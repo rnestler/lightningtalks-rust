@@ -105,7 +105,7 @@
       \begin{itemize}
         \item Fine grained control over memory
         \item Close to bare metal
-        \item It's possible to write an OS with it
+        \item It's possible to write an OS kernel with it
       \end{itemize}
     \end{column}
     \begin{column}{.6\textwidth}
@@ -132,7 +132,7 @@
   \begin{columns}[onlytextwidth]
     \begin{column}{.3\textwidth}
       \begin{itemize}
-        \item No Null pointers
+        \item No null pointers
         \item No dangling pointers
         \item No data races
       \end{itemize}
@@ -223,7 +223,7 @@
     \begin{column}{.8\textwidth}
     \begin{minted}[fontsize=\footnotesize]{rust}
 fn main() {
-    let program = "+ + * - /";
+    let program = "+ + * - - /";
     let mut accumulator = 0;
     for token in program.chars() {
         match token {
@@ -238,7 +238,7 @@ fn main() {
               program, accumulator);
 }
   \end{minted}
-      Output: \texttt{"The program "+ + * - /" calculates the value 1"}
+      Output: \texttt{"The program "+ + * - - /" calculates the value 1"}
   \end{column}
   \end{columns}
 \end{frame}
