@@ -2,7 +2,6 @@
 
 % Tikz
 \usepackage{tikz}
-\usetikzlibrary[shadings]
 \usetikzlibrary{fadings}
 % Colors
 \usepackage{color}
@@ -59,13 +58,20 @@
 \section{What is Rust?}
 
 \begin{frame}[c]{What is Rust?}
-  \begin{quote}
-    «Rust is a systems programming language\\
-    that runs blazingly fast, prevents nearly all segfaults,\\
-    and guarantees thread safety.»\\
-    \vspace{0.5em}
-    {\normalfont \small --- www.rust-lang.org}
-  \end{quote}
+  \begin{columns}[onlytextwidth]
+    \begin{column}{.8\textwidth}
+      \begin{quote}
+        «Rust is a systems programming language\\
+        that runs blazingly fast, prevents nearly all segfaults,\\
+        and guarantees thread safety.»\\
+        \vspace{0.5em}
+        {\normalfont \small --- \url{www.rust-lang.org}}
+      \end{quote}
+    \end{column}
+    \begin{column}{.2\textwidth}
+      \includegraphics[width=\textwidth]{./rust-logo-512x512.png}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}[c]{Control vs Safety?}
@@ -94,11 +100,21 @@
 %%%
 
 \begin{frame}[c]{A System Programming Language}
-  \begin{itemize}
-    \item Fine grained control over memory
-    \item Close to bare metal
-    \item It's possbile to write an OS with it
-  \end{itemize}
+  \begin{columns}[onlytextwidth]
+    \begin{column}{.4\textwidth}
+      \begin{itemize}
+        \item Fine grained control over memory
+        \item Close to bare metal
+        \item It's possible to write an OS with it
+      \end{itemize}
+    \end{column}
+    \begin{column}{.6\textwidth}
+      \begin{figure}
+        \includegraphics[width=\textwidth]{./redox.png}
+        \caption{\url{https://www.redox-os.org/}}
+      \end{figure}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 
@@ -108,15 +124,26 @@
     \item Uses LLVM for optimizations
     \item Zero cost abstractions
   \end{itemize}
+  \includegraphics[width=0.7\textwidth]{./spaceballs-meme.jpg}
 \end{frame}
 
 
 \begin{frame}[c]{Safety}
-  \begin{itemize}
-    \item No Null pointers
-    \item No dangling pointers
-    \item No data races
-  \end{itemize}
+  \begin{columns}[onlytextwidth]
+    \begin{column}{.3\textwidth}
+      \begin{itemize}
+        \item No Null pointers
+        \item No dangling pointers
+        \item No data races
+      \end{itemize}
+    \end{column}
+    \begin{column}{.7\textwidth}
+      \begin{figure}
+        \includegraphics[width=\textwidth]{./average_cpp_programmer.png}
+        \caption{Average C++ programmer}
+      \end{figure}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 
@@ -124,7 +151,7 @@
   \begin{itemize}
     \item Every resource has \emph{one owner}
     \item Variables are \emph{moved} to new locations
-    \item Owned values can be \emph{borrowd}
+    \item Owned values can be \emph{borrowed}
       \begin{itemize}
         \item{Either: \emph{One mutable} borrow}
         \item{Or: \emph{Many immutable} borrows}
@@ -133,52 +160,91 @@
   \end{itemize}
 \end{frame}
 
+\section{Cargo}
+
 \begin{frame}[c]{Cargo -- Rusts Package Manager}
-  \begin{itemize}
-    \item Awesome project and package manager
-    \item Fetches and builds your project’s dependencies
-    \item Invokes rustc or another build tool with the correct parameters
-      to build your project
-    \item OSS packages on \url{https://crates.io} are immutable\\ $\rightarrow$
-      No leftpad like disasters
-  \end{itemize}
+  \begin{columns}[onlytextwidth]
+    \begin{column}{.3\textwidth}
+      \centering
+      \begin{figure}
+      \includegraphics[width=\textwidth]{./Cargo-Logo-Small.png}
+      \end{figure}
+    \end{column}
+    \begin{column}{.7\textwidth}
+      \begin{itemize}
+        \item Awesome project and package manager
+        \item Fetches and builds your project’s dependencies
+        \item Invokes rustc or another build tool with the correct parameters
+          to build your project
+        \item OSS packages on \url{https://crates.io} are immutable\\ $\rightarrow$
+          No leftpad like disasters
+      \end{itemize}
+    \end{column}
+  \end{columns}
 \end{frame}
 
+\section{Community}
 
 \begin{frame}[c]{Community}
   \begin{itemize}
     \item Rust is known for its friendly and welcoming community
-    \item The language is develop in the open through RFCs
+    \item The language is developed in the open through RFCs
     \item Active discussion on Github, Reddit, IRC, and the forum
   \end{itemize}
 \end{frame}
 
-
-\begin{frame}[fragile]{Code}
-  When including minted code, the \texttt{[fragile]} option needs to be added to
-  the frame.
-
-  \begin{minted}{rust}
-  let color = Color::Red;
-  match color {
-    Color::Red => println!("Got red"),
-    Color::Green => println!("Got green"),
-    Color::Blue => println!("Got blue"),
-  }
-  \end{minted}
+\begin{frame}[c]{Rust in the Wild}
+  Rust is already used by companies\footnote{\url{https://www.rust-lang.org/en-US/friends.html}}
+  \begin{itemize}
+    \item Mozilla: Servo, the Parallel Browser Engine\\
+      {\footnotesize\url{https://servo.org}}
+    \item Dropbox\footnote{\url{https://www.reddit.com/r/rust/comments/4adabk/the_epic_story_of_dropboxs_exodus_from_the_amazon/}}
+    \item Maidsafe --- The New Decentralized Internet\\
+      {\footnotesize\url{http://maidsafe.net}}
+    \item Parity --- Next Generation Ethereum Client\\
+      {\footnotesize\url{https://ethcore.io/parity.html}}
+  \end{itemize}
 \end{frame}
+
+
+\section{Code Example}
+
+\begin{frame}[c,fragile]{Code Example}
+  \begin{columns}
+    \begin{column}{.3\textwidth}
+      \centering
+      \begin{itemize}
+        \item Traits based generics
+        \item Pattern matching
+        \item Type inference
+      \end{itemize}
+    \end{column}
+
+    \begin{column}{.8\textwidth}
+    \begin{minted}[fontsize=\footnotesize]{rust}
+fn main() {
+    let program = "+ + * - /";
+    let mut accumulator = 0;
+    for token in program.chars() {
+        match token {
+            '+' => accumulator += 1,
+            '-' => accumulator -= 1,
+            '*' => accumulator *= 2,
+            '/' => accumulator /= 2,
+            _ => { /* ignore everything else */ }
+        }
+    }
+    println!("The program \"{}\" calculates the value {}",
+              program, accumulator);
+}
+  \end{minted}
+      Output: \texttt{"The program "+ + * - /" calculates the value 1"}
+  \end{column}
+  \end{columns}
+\end{frame}
+
 
 % ----------------------------------------------------------------- %
-
-\section{Section 2}
-
-\begin{frame}{Picture Time}
-  Let's add some more text to it.
-
-  And a picture of a cute cat!
-
-  \includegraphics[height=6cm]{cat.jpg}
-\end{frame}
 
 % ----------------------------------------------------------------- %
 
